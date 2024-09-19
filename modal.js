@@ -10,8 +10,9 @@ function editNav() {
 // DOM Elements
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
-const formData = document.querySelectorAll(".formData");
 const closeBtn = document.querySelector(".close");
+const formulaire = document.querySelector(".formulaire");
+const landingModal = document.querySelector(".landingModal");
 
 
 // launch modal event
@@ -28,6 +29,12 @@ function closeModal () {
 }
 closeBtn.addEventListener("click", closeModal);
 
+// Landing Page
+formulaire.addEventListener("submit", (event => {
+  event.preventDefault();
+  formulaire.style.display = "none";
+  landingModal.style.display = "flex";
+}));
 
 
 
