@@ -23,6 +23,14 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
+/* Dev  */
+
+/*
+const closeBtn = document.querySelector(".close");
+const formulaire = document.querySelector(".formulaire");
+const landingModal = document.querySelector(".landingModal"); 
+*/
+
 // Close modal
 function closeModal () {
   modalbg.style.display = "none";

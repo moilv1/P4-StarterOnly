@@ -526,10 +526,12 @@ footer {
   }
 }
 
+
+/* Dev  */
+
 .landingModal{
   display: none;
   flex-direction: column;
-
 }
 .landingModal_label{
   font-size: 32px;
