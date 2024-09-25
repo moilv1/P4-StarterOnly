@@ -527,18 +527,30 @@ footer {
 }
 
 
-/* Dev  */
+/* CSS landingModal Desktop  */
 
 .landingModal{
   display: none;
   flex-direction: column;
+  overflow: auto;
 }
 .landingModal_label{
   font-size: 32px;
+  text-align: center;
   display: flex;
   justify-content: center;
-  margin: 16rem 5rem  
+  margin: 67% 10% 
 }
 .btn-submit:hover {
   background: #3876ac;
 }
+
+/* CSS landingModal Mobile */
+@media screen and (max-width: 480px) {
+
+.landingModal_label{
+  font-size: 28px;
+}
+
+}
+
