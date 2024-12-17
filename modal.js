@@ -56,7 +56,7 @@ function closeModal () {
 
 closeBtn.addEventListener("click", closeModal);
 
-function validerFormulaire(event) {
+function validerFormulaire() {
 
   // boucle pour reset display de errorMessage
   for (let index = 0; index < errorMessage.length; index++) {
@@ -96,7 +96,7 @@ function validerFormulaire(event) {
 }
 
 // Landing Page
-formulaire.addEventListener("submit", (event => {
+formulaire.addEventListener("submit", () => {
   validerFormulaire();
   console.log(dateNaissance.value);
-}));
+});
