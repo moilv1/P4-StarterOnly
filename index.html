@@ -69,10 +69,11 @@
                   class="text-control"
                   type="text"
                   id="first"
-                  name="first"
+                  name="prenom"
                   minlength="2"
                   required
                 /><br>
+                <div class="errorMessage prenom">Veuillez entrer un prenom valide</div>
               </div>
               <div
                 class="formData">
@@ -81,9 +82,10 @@
                   class="text-control"
                   type="text"
                   id="last"
-                  name="last"
+                  name="nom"
                   required
                 /><br>
+                <div class="errorMessage nom">Veuillez entrer un nom valide</div>
               </div>
               <div
                 class="formData">
@@ -95,6 +97,7 @@
                   name="email"
                   required
                 /><br>
+                <div class="errorMessage email">Veuillez entrer un email valide</div>
               </div>
               <div
                 class="formData">
@@ -106,11 +109,13 @@
                   name="birthdate"
                   required
                 /><br>
+                <div class="errorMessage birthdate">Veuillez entrer une date valide</div>
               </div>
               <div
                 class="formData">
                 <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-                <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99" required>
+                <input type="number" class="text-control" id="quantity" name="tournois" required>
+                <div class="errorMessage tournois">Veuillez entrer un nombre de tournois valide</div>
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div
@@ -189,7 +194,6 @@
                   class="checkbox-input"
                   type="checkbox"
                   id="checkbox1"
-                  checked
                 />
                 <label class="checkbox2-label" for="checkbox1" required>
                   <span class="checkbox-icon"></span>
