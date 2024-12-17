@@ -31,7 +31,6 @@ img {
 }
 
 .topnav {
-  display: flex;
   overflow: hidden;
   margin: 3.5%;
 }
@@ -40,7 +39,6 @@ img {
 }
 .main-navbar {
     float: right;
-    margin-left: auto;
 }
 .topnav a {
   float: left;
@@ -73,34 +71,26 @@ img {
 
 @media screen and (max-width: 1110px) {
   .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
+  .topnav.responsive a{
+    display: flex;
   }
-}
-
-@media screen and (max-width: 768px) {
-  .topnav.responsive {position: relative;}
-  .topnav.responsive .icon {
+  .main-navbar{
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 10px;
+    display: flex;
+    flex-direction: column-reverse;
+    z-index: 999999;
+    background-color: white;
+    border-radius: 10%;
+    
   }
-  .topnav.responsive a {
-    float: none;
-    text-align: left;
-  }
-}
-
-
-
- @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
   .topnav a.icon {
     float: right;
     display: block;
   }
-} 
+}
+
+
 
 main {
   font-size: 130%;

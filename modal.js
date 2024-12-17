@@ -1,9 +1,12 @@
 function editNav() {
   var x = document.getElementById("myTopnav");
+  var background = document.querySelector(".main-navbar")
   if (x.className === "topnav") {
     x.className += " responsive";
+    background.style.backgroundColor = "red";
   } else {
     x.className = "topnav";
+    background.style.backgroundColor = "";
   }
 }
 
