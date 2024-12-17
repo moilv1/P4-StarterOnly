@@ -30,12 +30,12 @@ const nomPrenomRegex = /^[a-zA-ZÀ-ÿ '-]+$/; // -> lettres, accents, espaces, a
 
 
 // launch modal event
+
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-
-
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
+  window.location.href = "#body";
 }
 
 /* Dev  */
@@ -94,7 +94,6 @@ function validerFormulaire(event) {
 
 // Landing Page
 formulaire.addEventListener("submit", (event => {
-  event.preventDefault();
   validerFormulaire();
   console.log(dateNaissance.value);
 }));
