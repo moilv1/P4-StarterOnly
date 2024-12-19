@@ -3,7 +3,7 @@ function editNav() {
   var background = document.querySelector(".main-navbar")
   if (x.className === "topnav") {
     x.className += " responsive";
-    background.style.backgroundColor = "red";
+    background.style.backgroundColor = "lightgray";
   } else {
     x.className = "topnav";
     background.style.backgroundColor = "";
