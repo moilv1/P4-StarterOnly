@@ -69,7 +69,7 @@ img {
 }
 
 
-@media screen and (max-width: 1110px) {
+@media screen and (max-width: 950px) {
   .topnav a {display: none;}
   .topnav.responsive a{
     display: flex;
