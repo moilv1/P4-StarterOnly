@@ -36,7 +36,7 @@ const nomPrenomRegex = /^[a-zA-ZÀ-ÿ '-]+$/; // -> lettres, accents, espaces, a
 
 // launch modal event
 
-btnSignup.forEach((btn) => btn.addEventListener("click", launchModal));
+btnSignup.addEventListener("click", launchModal);
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
