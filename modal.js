@@ -12,11 +12,12 @@ function editNav() {
 
 // DOM Elements
 const modalbg = document.querySelector(".bground");
-const modalBtn = document.querySelectorAll(".modal-btn");
+const btnSignup = document.querySelector(".btn-signup");
 const closeBtn = document.querySelector(".close");
 const formulaire = document.querySelector(".formulaire");
 const landingModal = document.querySelector(".landingModal");
 const errorMessage = document.querySelectorAll(".errorMessage");
+const input = document.querySelectorAll("input");
 
 
 // Value input
@@ -25,6 +26,7 @@ const nom = document.querySelector("input[name='nom']");
 const email = document.querySelector("input[name='email']");
 const dateNaissance = document.querySelector("input[name='birthdate']");
 const tournois = document.querySelector("input[name='tournois']");
+const checkBoxCU = document.getElementById('checkbox1');
 
 // REGEX
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // -> format email
@@ -34,10 +36,11 @@ const nomPrenomRegex = /^[a-zA-ZÀ-ÿ '-]+$/; // -> lettres, accents, espaces, a
 
 // launch modal event
 
-modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+btnSignup.forEach((btn) => btn.addEventListener("click", launchModal));
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
+  formulaire.style.display = "block";
   window.location.href = "#body";
 }
 
@@ -52,6 +55,8 @@ const landingModal = document.querySelector(".landingModal");
 // Close modal
 function closeModal () {
   modalbg.style.display = "none";
+  formulaire.style.display="none";
+  landingModal.style.display = "none";
 }
 
 closeBtn.addEventListener("click", closeModal);
@@ -91,12 +96,14 @@ function validerFormulaire() {
     errorMessage[4].style.display = "flex";
     return;
   }
+
+  if (checkBoxCU.checked == false) {
+    errorMessage[5].style.display = "flex";
+    return;
+  }
+
   formulaire.style.display = "none";
   landingModal.style.display = "flex";
 }
 
-// Landing Page
-formulaire.addEventListener("submit", () => {
-  validerFormulaire();
-  console.log(dateNaissance.value);
-});
+
