@@ -29,22 +29,14 @@ const tournois = document.querySelector("input[name='tournois']");
 const checkBoxCU = document.getElementById('checkbox1');
 
 // REGEX
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // -> format email
 const dateRegex = /^\d{4}[-/]\d{2}[-/]\d{2}$/; // format aaaa/mm/jj
+const pattern = new RegExp(email.pattern)
 
-prenom.addEventListener("blur", () => {
-  validerPrenom(prenom.value);
-})
-nom.addEventListener("blur", () => {
-  validerNom(nom.value)
-})
-email.addEventListener("blur", () => {
-  validerEmail(email.value)
-})
 
 // launch modal event
-
 btnSignup.addEventListener("click", launchModal);
+
+
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
@@ -52,47 +44,55 @@ function launchModal() {
   window.location.href = "#body";
 }
 
-/* Dev  */
-
-/*
-const closeBtn = document.querySelector(".close");
-const formulaire = document.querySelector(".formulaire");
-const landingModal = document.querySelector(".landingModal"); 
-*/
-
 // Close modal
 function closeModal () {
   modalbg.style.display = "none";
   formulaire.style.display="none";
   landingModal.style.display = "none";
 }
-
 closeBtn.addEventListener("click", closeModal);
 
-function validerEmail(email) {
-  var regexMail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (regexMail.test(email)) {
+
+//-----------------------------------------//
+
+prenom.addEventListener("blur", () => {
+  validerPrenom(prenom.value);
+})
+
+nom.addEventListener("blur", () => {
+  validerNom(nom.value)
+})
+
+email.addEventListener('input', function () {
+
+  if (!pattern.test(email.value)) {
     errorMessage[2].style.display = 'block';
+    return;
+  } else {
+    errorMessage[2].style.display = 'none';
+    return;
   }
-  errorMessage[2].style.display = 'none';
-  return
-}
+})
+
+
+
+//-------------------------------------//
+
 function validerPrenom(name) {
   if (name.length < 2) {
     errorMessage[0].style.display= 'block';
-    return
+    return;
   }
   errorMessage[0].style.display= 'none';
-  return
-  
+  return;
 }
 function validerNom(name) {
   if (name.length < 2) {
     errorMessage[1].style.display= 'block';
-    return
+    return;
   }
   errorMessage[1].style.display= 'none';
-  return
+  return;
   
 }
 
