@@ -27,6 +27,7 @@ const email = document.querySelector("input[name='email']");
 const dateNaissance = document.querySelector("input[name='birthdate']");
 const tournois = document.querySelector("input[name='tournois']");
 const checkBoxCU = document.getElementById('checkbox1');
+const checkboxCity = document.querySelectorAll("input[name='location']");
 
 // REGEX
 const patternEmail = new RegExp(email.pattern);
@@ -93,6 +94,29 @@ tournois.addEventListener('input', function() {
 })
 
 
+document.addEventListener('click', () => {
+  // Vérifie si un bouton radio est sélectionné
+  const boutonCoche = document.querySelector('input[name="location"]:checked');
+
+  if (boutonCoche) {
+    errorMessage[5].style.display = 'none';
+    return;
+  }
+  errorMessage[5].style.display = 'block';
+  
+});
+
+
+
+
+
+
+
+
+
+
+
+
 //-------------------------------------//
 
 function validerPrenom(name) {
@@ -137,6 +161,6 @@ function validerTournois(int) {
     errorMessage[4].style.display = 'block';
     return;
   }
-  errorMessage[4].style.display = 'none'
-  return
+  errorMessage[4].style.display = 'none';
+  return;
 }
