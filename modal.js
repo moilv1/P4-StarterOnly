@@ -86,7 +86,10 @@ dateNaissance.addEventListener('change', function() {
     errorMessage[3].style.display = 'none';
     console.log('ok');
   }
-  
+})
+
+tournois.addEventListener('input', function() {
+  validerTournois(tournois.value)
 })
 
 
@@ -102,10 +105,10 @@ function validerPrenom(name) {
 }
 function validerNom(name) {
   if (name.length < 2) {
-    errorMessage[1].style.display= 'block';
+    errorMessage[1].style.display = 'block';
     return;
   }
-  errorMessage[1].style.display= 'none';
+  errorMessage[1].style.display = 'none';
   return;
 }
 function validerDateNaissance(date) {
@@ -128,4 +131,12 @@ function validerDateNaissance(date) {
   }
 
   return estValide
+}
+function validerTournois(int) {
+  if (isNaN(int) || int < 0) {
+    errorMessage[4].style.display = 'block';
+    return;
+  }
+  errorMessage[4].style.display = 'none'
+  return
 }
