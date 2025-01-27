@@ -29,8 +29,8 @@ const tournois = document.querySelector("input[name='tournois']");
 const checkBoxCU = document.getElementById('checkbox1');
 
 // REGEX
-const dateRegex = /^\d{4}[-/]\d{2}[-/]\d{2}$/; // format aaaa/mm/jj
-const pattern = new RegExp(email.pattern)
+const patternEmail = new RegExp(email.pattern);
+const patternDate = new RegExp(birthdate.pattern);
 
 
 // launch modal event
@@ -65,15 +65,29 @@ nom.addEventListener("blur", () => {
 
 email.addEventListener('input', function () {
 
-  if (!pattern.test(email.value)) {
+  if (!patternEmail.test(email.value)) {
     errorMessage[2].style.display = 'block';
+    console.log('ERR');
     return;
   } else {
     errorMessage[2].style.display = 'none';
+    console.log('ok');
     return;
   }
 })
 
+dateNaissance.addEventListener('change', function() {
+  const date = dateNaissance.value
+  if (!validerDateNaissance(date)) {
+    errorMessage[3].style.display = 'block';
+    console.log(dateNaissance.value);
+    console.log('err');
+  } else {
+    errorMessage[3].style.display = 'none';
+    console.log('ok');
+  }
+  
+})
 
 
 //-------------------------------------//
@@ -93,6 +107,25 @@ function validerNom(name) {
   }
   errorMessage[1].style.display= 'none';
   return;
-  
 }
+function validerDateNaissance(date) {
+  const regex = /^(19|20)\d\d-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
+  
+  if (!regex.test(date)) {
+    return false
+  }
+  
+  const [annee, mois, jour] = date.split('-').map(Number); // Découper en [année, mois, jour]
+  const dateObj = new Date(annee, mois - 1, jour);
 
+  const estValide =
+    dateObj.getFullYear() === annee &&
+    dateObj.getMonth() === mois - 1 &&
+    dateObj.getDate() === jour;
+
+  if (!estValide) {
+    console.log("La date est logiquement incorrecte.");
+  }
+
+  return estValide
+}
