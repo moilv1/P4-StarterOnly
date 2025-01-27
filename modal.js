@@ -17,6 +17,9 @@ const closeBtn = document.querySelector(".close");
 const formulaire = document.querySelector(".formulaire");
 const landingModal = document.querySelector(".landingModal");
 const errorMessage = document.querySelectorAll(".errorMessage");
+const errorInput = document.querySelectorAll("input");
+console.log(errorInput);
+
 const input = document.querySelectorAll("input");
 
 
@@ -26,8 +29,8 @@ const nom = document.querySelector("input[name='nom']");
 const email = document.querySelector("input[name='email']");
 const dateNaissance = document.querySelector("input[name='birthdate']");
 const tournois = document.querySelector("input[name='tournois']");
-const checkBoxCU = document.getElementById('checkbox1');
-const checkboxCity = document.querySelectorAll("input[name='location']");
+const boutonCoche = document.querySelector('input[name="location"]:checked');
+const boutonCocheCU = document.querySelector('input[id="checkbox1"]:checked');
 
 // REGEX
 const patternEmail = new RegExp(email.pattern);
@@ -64,28 +67,22 @@ nom.addEventListener("blur", () => {
   validerNom(nom.value)
 })
 
-email.addEventListener('input', function () {
-
-  if (!patternEmail.test(email.value)) {
+email.addEventListener('change', function () {
+  const emailToConfirm = email.value
+  if (!validerEmail(emailToConfirm)) {
     errorMessage[2].style.display = 'block';
-    console.log('ERR');
-    return;
   } else {
     errorMessage[2].style.display = 'none';
-    console.log('ok');
-    return;
   }
+   
 })
 
 dateNaissance.addEventListener('change', function() {
   const date = dateNaissance.value
   if (!validerDateNaissance(date)) {
     errorMessage[3].style.display = 'block';
-    console.log(dateNaissance.value);
-    console.log('err');
   } else {
     errorMessage[3].style.display = 'none';
-    console.log('ok');
   }
 })
 
@@ -96,14 +93,9 @@ tournois.addEventListener('input', function() {
 
 document.addEventListener('click', () => {
   // Vérifie si un bouton radio est sélectionné
-  const boutonCoche = document.querySelector('input[name="location"]:checked');
+  validerLocation(boutonCoche)
+  validerCU(boutonCocheCU)
 
-  if (boutonCoche) {
-    errorMessage[5].style.display = 'none';
-    return;
-  }
-  errorMessage[5].style.display = 'block';
-  
 });
 
 
@@ -112,6 +104,45 @@ document.addEventListener('click', () => {
 
 
 
+/*function validerFormulaire(event) {
+
+  // boucle pour reset display de errorMessage
+  for (let index = 0; index < errorMessage.length; index++) {
+    errorMessage[index].style.display= "none";
+  }
+
+  // Validation du prénom
+  if (!nomPrenomRegex.test(prenom.value)) {
+    errorMessage[0].style.display = "flex";
+    return;
+  }
+  
+  // Validation du nom
+  if (!nomPrenomRegex.test(nom.value)) {
+    errorMessage[1].style.display = "flex";
+    return;
+  }
+
+  // Validation de l'email
+  if (!emailRegex.test(email.value)) {
+    errorMessage[2].style.display = "flex";
+    return;
+  }
+  // Validation de la date de naissance
+  if (!dateRegex.test(dateNaissance.value)) {
+    errorMessage[3].style.display = "flex";
+    return;
+  }
+
+  // Validation du nombre de tournois
+  if (isNaN(tournois.value) || tournois.value < 0) {
+    errorMessage[4].style.display = "flex";
+    return;
+  }
+  formulaire.style.display = "none";
+  landingModal.style.display = "flex";
+}*/
+
 
 
 
@@ -119,22 +150,31 @@ document.addEventListener('click', () => {
 
 //-------------------------------------//
 
-function validerPrenom(name) {
-  if (name.length < 2) {
-    errorMessage[0].style.display= 'block';
+function validerPrenom(prenom) {
+  console.log(prenom);
+  
+  if (!isNaN(prenom) || prenom.length < 2) {
+    errorMessage[0].style.display = 'block';
     return;
   }
   errorMessage[0].style.display= 'none';
   return;
 }
 function validerNom(name) {
-  if (name.length < 2) {
+  if (!isNaN(name) || name.length < 2) {
     errorMessage[1].style.display = 'block';
     return;
   }
   errorMessage[1].style.display = 'none';
   return;
 }
+
+function validerEmail(email) {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  console.log(email);
+  return regex.test(email)
+}
+
 function validerDateNaissance(date) {
   const regex = /^(19|20)\d\d-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
   
@@ -163,4 +203,19 @@ function validerTournois(int) {
   }
   errorMessage[4].style.display = 'none';
   return;
+}
+
+function validerLocation(location) {
+  if (location) {
+    errorMessage[5].style.display = 'none';
+    return;
+  }
+  errorMessage[5].style.display = 'block';
+}
+function validerCU(radioCU) {
+  if (radioCU) {
+    errorMessage[6].style.display = 'none';
+    return;
+  }
+  errorMessage[6].style.display = 'block';
 }

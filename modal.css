@@ -199,30 +199,6 @@ input {
   font-size: 20px;
   height: 48px;
 }
-.formData[data-error]::after {
-  content: attr(data-error);
-  font-size: 0.4em;
-  color: #e54858;
-  display: block;
-  margin-top: 7px;
-  margin-bottom: 7px;
-  text-align: right;
-  line-height: 0.3;
-  opacity: 0;
-  transition: 0.3s;
-}
-.formData[data-error-visible="true"]::after {
-  opacity: 1;
-}
-.formData[data-error-visible="true"] .text-control {
-  border: 2px solid #e54858;
-}
-/* 
-input[data-error]::after {
-    content: attr(data-error);
-    font-size: 0.4em;
-    color: red;
-} */
 .checkbox-label,
 .checkbox2-label {
   position: relative;
@@ -554,8 +530,9 @@ footer {
   border: 1px solid #f00;
   padding: 0.5rem ;
   text-align: center;
+  font-size: 16px;
 }
-.prenom, .nom, .email, .birthdate, .tournois {
-  display: none;
+#checkbox1 {
+  border-color: none;
 }
 
