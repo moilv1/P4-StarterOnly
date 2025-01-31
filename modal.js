@@ -30,7 +30,7 @@ const checkBoxCU = document.getElementById('checkbox1');
 
 // REGEX
 const dateRegex = /^\d{4}[-/]\d{2}[-/]\d{2}$/; // format aaaa/mm/jj
-const patternEmail = new RegExp(email.pattern);
+const patternEmail = /^[\w.-]+@[\w-]+\.[a-zA-Z]{2,}$/;
 const patternDate = new RegExp(birthdate.pattern);
 
 
