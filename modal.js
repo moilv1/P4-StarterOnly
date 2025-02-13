@@ -26,8 +26,8 @@ const email = document.querySelector("input[name='email']");
 const dateNaissance = document.querySelector("input[name='birthdate']");
 const tournois = document.querySelector("input[name='tournois']");
 const checkBoxCU = document.getElementById('checkbox1');
-const ratio = document.querySelectorAll("input[name='location']");
-console.log(ratio);
+const ratios = document.querySelectorAll("input[name='location']");
+
 
 
 // REGEX
@@ -42,6 +42,7 @@ btnSignup.addEventListener("click", launchModal);
 
 // launch modal form
 function launchModal() {
+  resetFormFields();
   modalbg.style.display = "block";
   formulaire.style.display = "block";
   window.location.href = "#body";
@@ -54,6 +55,12 @@ function closeModal () {
   landingModal.style.display = "none";
 }
 closeBtn.addEventListener("click", closeModal);
+
+function closeForm() {
+  modalbg.style.display = "block";
+  formulaire.style.display="none";
+  landingModal.style.display = "block";
+}
 
 // Event
 //-----------------------------------------//
@@ -74,11 +81,8 @@ dateNaissance.addEventListener('change', () => {
   const date = dateNaissance.value
   if (!validerDateNaissance(date)) {
     errorMessage[3].style.display = 'block';
-    console.log(dateNaissance.value);
-    console.log('err');
   } else {
     errorMessage[3].style.display = 'none';
-    console.log('ok');
   }
   
 })
@@ -87,13 +91,13 @@ tournois.addEventListener('input', () => {
   const nbreTournois = tournois.value
   if (!validerNbreTournois(nbreTournois)) {
     errorMessage[4].style.display = 'block';
-    console.log('err');
   } else {
     errorMessage[4].style.display = 'none';
-    console.log('ez');
   }
   
 })
+
+
 
 
 // Function
@@ -102,28 +106,28 @@ tournois.addEventListener('input', () => {
 function validerPrenom(name) {
   if (name.length < 2) {
     errorMessage[0].style.display= 'block';
-    return;
+    return false;
   }
   errorMessage[0].style.display= 'none';
-  return;
+  return true;
 }
 
 function validerNom(name) {
   if (name.length < 2) {
     errorMessage[1].style.display= 'block';
-    return;
+    return false;
   }
   errorMessage[1].style.display= 'none';
-  return;
+  return true;
 }
 
 function validerEmail(email) {
   if (!patternEmail.test(email)) {
     errorMessage[2].style.display = 'block';
-    return;
+    return false;
   } else {
     errorMessage[2].style.display = 'none';
-    return;
+    return true;
   }
 }
 
@@ -156,9 +160,74 @@ function validerNbreTournois(nbre) {
   return false
 }
 
-function checkAcceptance(checkBox) {
-  if (!checkBox.checked) {
-    alert('test')
+function validerLocation(radios) {
+  let isSelected = false;
+
+  radios.forEach((elt) => {
+    if (elt.checked) {
+      errorMessage[5].style.display = 'none';
+      isSelected = true;
+    }
+  });
+
+  if (!isSelected) {
+    errorMessage[5].style.display = 'block';
   }
+
+  return isSelected;
 }
 
+function checkAcceptance(checkBox) {
+  if (!checkBox.checked) {
+    errorMessage[6].style.display = 'block';
+    return false
+  }
+  errorMessage[6].style.display = 'none';
+  return true
+}
+
+function resetFormFields() {
+  prenom.value = "";
+  nom.value = "";
+  email.value = "";
+  dateNaissance.value = "";
+  tournois.value = "";
+
+  // Réinitialiser les boutons radio
+  ratios.forEach(radio => {
+    radio.checked = false;
+  });
+
+  // Réinitialiser la case à cocher
+  checkBoxCU.checked = false;
+
+  // Masquer tous les messages d'erreur
+  errorMessage.forEach(msg => {
+    msg.style.display = 'none';
+  });
+}
+
+function submitForm() {
+
+  const isPrenomValid = validerPrenom(prenom.value);
+  const isNomValid = validerNom(nom.value);
+  const isEmailValid = validerEmail(email.value);
+  const isDateValid = validerDateNaissance(dateNaissance.value);
+  const isNbreTournoisValid = validerNbreTournois(tournois.value);
+  const isLocationValid = validerLocation(ratios);
+  const isAccepted = checkAcceptance(checkBoxCU);
+
+  console.log("Prénom valid:", isPrenomValid);
+  console.log("Nom valid:", isNomValid);
+  console.log("Email valid:", isEmailValid);
+  console.log("Date valid:", isDateValid);
+  console.log("Nombre de tournois valid:", isNbreTournoisValid);
+  console.log("Localisation valid:", isLocationValid);
+  console.log("Conditions acceptées:", isAccepted);
+
+  if (isPrenomValid && isNomValid && isEmailValid && isDateValid && isNbreTournoisValid && isLocationValid && isAccepted) {
+    console.log(isAccepted,isDateValid,isEmailValid,isLocationValid,isNbreTournoisValid,isNomValid,isPrenomValid);
+    closeForm();
+  }
+
+}

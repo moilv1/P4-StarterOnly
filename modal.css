@@ -288,6 +288,10 @@ input {
 .close:after {
   transform: rotate(-45deg);
 }
+.btn-submit{
+  width: 100%;
+  text-align: center;
+}
 .btn-submit,
 .btn-signup {
   background: #fe142f;
