@@ -17,7 +17,6 @@ const closeBtn = document.querySelector(".close");
 const formulaire = document.querySelector(".formulaire");
 const landingModal = document.querySelector(".landingModal");
 const errorMessage = document.querySelectorAll(".errorMessage");
-const input = document.querySelectorAll("input");
 
 
 // Value input
@@ -27,6 +26,9 @@ const email = document.querySelector("input[name='email']");
 const dateNaissance = document.querySelector("input[name='birthdate']");
 const tournois = document.querySelector("input[name='tournois']");
 const checkBoxCU = document.getElementById('checkbox1');
+const ratio = document.querySelectorAll("input[name='location']");
+console.log(ratio);
+
 
 // REGEX
 const dateRegex = /^\d{4}[-/]\d{2}[-/]\d{2}$/; // format aaaa/mm/jj
@@ -53,7 +55,7 @@ function closeModal () {
 }
 closeBtn.addEventListener("click", closeModal);
 
-
+// Event
 //-----------------------------------------//
 
 prenom.addEventListener("input", () => {
@@ -64,11 +66,11 @@ nom.addEventListener("input", () => {
   validerNom(nom.value)
 })
 
-email.addEventListener('input', function () {
+email.addEventListener('input', () => {
   validerEmail(email.value)
 })
 
-dateNaissance.addEventListener('change', function() {
+dateNaissance.addEventListener('change', () => {
   const date = dateNaissance.value
   if (!validerDateNaissance(date)) {
     errorMessage[3].style.display = 'block';
@@ -81,9 +83,20 @@ dateNaissance.addEventListener('change', function() {
   
 })
 
+tournois.addEventListener('input', () => {
+  const nbreTournois = tournois.value
+  if (!validerNbreTournois(nbreTournois)) {
+    errorMessage[4].style.display = 'block';
+    console.log('err');
+  } else {
+    errorMessage[4].style.display = 'none';
+    console.log('ez');
+  }
+  
+})
 
 
-
+// Function
 //-------------------------------------//
 
 function validerPrenom(name) {
@@ -134,5 +147,18 @@ function validerDateNaissance(date) {
   }
 
   return estValide
+}
+
+function validerNbreTournois(nbre) {
+  if (nbre >= 0 && nbre < 100) {
+    return true
+  }
+  return false
+}
+
+function checkAcceptance(checkBox) {
+  if (!checkBox.checked) {
+    alert('test')
+  }
 }
 
