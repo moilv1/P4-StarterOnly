@@ -444,6 +444,17 @@ input {
 .hero-section > .btn-signup {
   display: none;
 }
+.errorMessage {
+  display: none;
+  margin: 1rem 0 1rem 0;
+  flex-direction: column;
+  color: #f00;
+  border: 1px solid #f00;
+  padding: 0.5rem ;
+  text-align: center;
+  font-size: 16px;
+}
+
 footer {
   padding-left: 2vw;
   padding-right: 2vw;
@@ -506,6 +517,7 @@ footer {
   flex-direction: column;
   overflow: auto;
 }
+
 .landingModal_label{
   font-size: 32px;
   text-align: center;
@@ -513,6 +525,7 @@ footer {
   justify-content: center;
   margin: 67% 10% 
 }
+
 .btn-submit:hover {
   background: #3876ac;
 }
@@ -520,23 +533,12 @@ footer {
 /* CSS landingModal Mobile */
 @media screen and (max-width: 480px) {
 
-.landingModal_label{
+.landingModal_label {
   font-size: 28px;
 }
 
-}
-
-.errorMessage{
-  display: none;
-  margin: 1rem 0 1rem 0;
-  flex-direction: column;
-  color: #f00;
-  border: 1px solid #f00;
-  padding: 0.5rem ;
-  text-align: center;
-  font-size: 16px;
-}
 #checkbox1 {
   border-color: none;
 }
 
+}

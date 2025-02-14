@@ -12,7 +12,7 @@ function editNav() {
 
 // DOM Elements
 const modalbg = document.querySelector(".bground");
-const btnSignup = document.querySelector(".btn-signup");
+const btnSignups = document.querySelectorAll(".btn-signup");
 const closeBtn = document.querySelector(".close");
 const formulaire = document.querySelector(".formulaire");
 const landingModal = document.querySelector(".landingModal");
@@ -33,16 +33,17 @@ const ratios = document.querySelectorAll("input[name='location']");
 // REGEX
 const dateRegex = /^\d{4}[-/]\d{2}[-/]\d{2}$/; // format aaaa/mm/jj
 const patternEmail = /^[\w.-]+@[\w-]+\.[a-zA-Z]{2,}$/;
-const patternDate = new RegExp(birthdate.pattern);
 
 
 // launch modal event
-btnSignup.addEventListener("click", launchModal);
+btnSignups.forEach((btn => {
+  btn.addEventListener('click', launchModal);
+}));
 
 
 // launch modal form
+
 function launchModal() {
-  resetFormFields();
   modalbg.style.display = "block";
   formulaire.style.display = "block";
   window.location.href = "#body";
@@ -217,16 +218,8 @@ function submitForm() {
   const isLocationValid = validerLocation(ratios);
   const isAccepted = checkAcceptance(checkBoxCU);
 
-  console.log("Prénom valid:", isPrenomValid);
-  console.log("Nom valid:", isNomValid);
-  console.log("Email valid:", isEmailValid);
-  console.log("Date valid:", isDateValid);
-  console.log("Nombre de tournois valid:", isNbreTournoisValid);
-  console.log("Localisation valid:", isLocationValid);
-  console.log("Conditions acceptées:", isAccepted);
 
   if (isPrenomValid && isNomValid && isEmailValid && isDateValid && isNbreTournoisValid && isLocationValid && isAccepted) {
-    console.log(isAccepted,isDateValid,isEmailValid,isLocationValid,isNbreTournoisValid,isNomValid,isPrenomValid);
     closeForm();
   }
 
