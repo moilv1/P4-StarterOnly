@@ -17,6 +17,7 @@ const closeBtn = document.querySelector(".close");
 const formulaire = document.querySelector(".formulaire");
 const landingModal = document.querySelector(".landingModal");
 const errorMessage = document.querySelectorAll(".errorMessage");
+const inputs = document.querySelectorAll("input.text-control");
 
 
 // Value input
@@ -44,6 +45,7 @@ btnSignups.forEach((btn => {
 // launch modal form
 
 function launchModal() {
+  formulaire.reset()
   modalbg.style.display = "block";
   formulaire.style.display = "block";
   window.location.href = "#body";
@@ -51,6 +53,12 @@ function launchModal() {
 
 // Close modal
 function closeModal () {
+  errorMessage.forEach(mess => {
+    mess.style.display = 'none';
+  });
+  inputs.forEach(input => {
+    input.classList.remove('invalid')
+  })
   modalbg.style.display = "none";
   formulaire.style.display="none";
   landingModal.style.display = "none";
@@ -79,23 +87,11 @@ email.addEventListener('input', () => {
 })
 
 dateNaissance.addEventListener('change', () => {
-  const date = dateNaissance.value
-  if (!validerDateNaissance(date)) {
-    errorMessage[3].style.display = 'block';
-  } else {
-    errorMessage[3].style.display = 'none';
-  }
-  
+  validerDateNaissance(dateNaissance.value)
 })
 
 tournois.addEventListener('input', () => {
-  const nbreTournois = tournois.value
-  if (!validerNbreTournois(nbreTournois)) {
-    errorMessage[4].style.display = 'block';
-  } else {
-    errorMessage[4].style.display = 'none';
-  }
-  
+  validerNbreTournois(tournois.value);
 })
 
 
@@ -107,27 +103,33 @@ tournois.addEventListener('input', () => {
 function validerPrenom(name) {
   if (name.length < 2) {
     errorMessage[0].style.display= 'block';
+    prenom.classList.add('invalid')
     return false;
   }
   errorMessage[0].style.display= 'none';
+  prenom.classList.remove('invalid')
   return true;
 }
 
 function validerNom(name) {
   if (name.length < 2) {
     errorMessage[1].style.display= 'block';
+    nom.classList.add('invalid');
     return false;
   }
   errorMessage[1].style.display= 'none';
+  nom.classList.remove('invalid');
   return true;
 }
 
-function validerEmail(email) {
-  if (!patternEmail.test(email)) {
+function validerEmail(emailValue) {
+  if (!patternEmail.test(emailValue)) {
     errorMessage[2].style.display = 'block';
+    email.classList.add('invalid');
     return false;
   } else {
     errorMessage[2].style.display = 'none';
+    email.classList.remove('invalid');
     return true;
   }
 }
@@ -136,6 +138,8 @@ function validerDateNaissance(date) {
   const regex = /^(19|20)\d\d-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
   
   if (!regex.test(date)) {
+    dateNaissance.classList.add('invalid');
+    errorMessage[3].style.display = 'block';
     return false
   }
   
@@ -151,14 +155,22 @@ function validerDateNaissance(date) {
     console.log("La date est logiquement incorrecte.");
   }
 
+  dateNaissance.classList.remove('invalid');
+  errorMessage[3].style.display = 'none';
   return estValide
 }
 
 function validerNbreTournois(nbre) {
-  if (nbre >= 0 && nbre < 100) {
-    return true
+  const nombreValide = /^[0-9]{1,3}$/.test(nbre) && parseInt(nbre) >= 0 && parseInt(nbre) <= 100;
+
+  if (!nombreValide) {
+    tournois.classList.add('invalid');
+    errorMessage[4].style.display = 'block';
+    return false;
   }
-  return false
+  tournois.classList.remove('invalid');
+  errorMessage[4].style.display = 'none';
+  return true;
 }
 
 function validerLocation(radios) {

@@ -188,13 +188,13 @@ label {
 }
 input {
   padding: 8px;
-  border: 0.8px solid #ccc;
   outline: none;
 }
 .text-control {
   margin: 0;
   padding: 8px;
   width: 100%;
+  border: none;
   border-radius: 8px;
   font-size: 20px;
   height: 48px;
@@ -446,13 +446,10 @@ input {
 }
 .errorMessage {
   display: none;
-  margin: 1rem 0 1rem 0;
   flex-direction: column;
   color: #f00;
-  border: 1px solid #f00;
-  padding: 0.5rem ;
-  text-align: center;
-  font-size: 16px;
+  text-align: left;
+  font-size: 13px;
 }
 
 footer {
@@ -541,4 +538,8 @@ footer {
   border-color: none;
 }
 
+}
+
+.invalid {
+  border: 3px solid red;
 }
