@@ -1,15 +1,14 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const toggleBtn = document.getElementById("nav-toggle");
+// Hamburger Menu
+const toggleBtn = document.getElementById("nav-toggle");
   const nav = document.getElementById("myTopnav");
   const background = document.querySelector(".main-navbar");
 
-  toggleBtn.addEventListener("click", function () {
-    if (nav.className === "topnav") {
-      nav.className += " responsive";
-    } else {
-      nav.className = "topnav";
-    }
-  });
+toggleBtn.addEventListener("click", function () {
+  if (nav.className === "topnav") {
+    nav.className += " responsive";
+  } else {
+    nav.className = "topnav";
+  }
 });
 
 
@@ -52,7 +51,6 @@ btnSignups.forEach((btn => {
 // launch modal form
 
 function launchModal() {
-  formulaire.reset()
   modalbg.style.display = "block";
   formulaire.style.display = "block";
   window.location.href = "#body";
@@ -80,9 +78,7 @@ function closeForm() {
 // Event
 //-----------------------------------------//
 closeLandingModal.addEventListener("click", closeModal)
-closeBtn.addEventListener("click", closeModal())
-hamburgerMenu.addEventListener("click", editNav())
-
+closeBtn.addEventListener("click", closeModal)
 
 sendForm.addEventListener("click", () => {
   submitForm();
@@ -246,6 +242,7 @@ function submitForm() {
 
 
   if (isPrenomValid && isNomValid && isEmailValid && isDateValid && isNbreTournoisValid && isLocationValid && isAccepted) {
+    formulaire.reset()
     closeForm();
   }
 
