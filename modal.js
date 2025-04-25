@@ -1,14 +1,17 @@
-function editNav() {
-  var x = document.getElementById("myTopnav");
-  var background = document.querySelector(".main-navbar")
-  if (x.className === "topnav") {
-    x.className += " responsive";
-    background.style.backgroundColor = "lightgray";
-  } else {
-    x.className = "topnav";
-    background.style.backgroundColor = "";
-  }
-}
+document.addEventListener("DOMContentLoaded", function () {
+  const toggleBtn = document.getElementById("nav-toggle");
+  const nav = document.getElementById("myTopnav");
+  const background = document.querySelector(".main-navbar");
+
+  toggleBtn.addEventListener("click", function () {
+    if (nav.className === "topnav") {
+      nav.className += " responsive";
+    } else {
+      nav.className = "topnav";
+    }
+  });
+});
+
 
 // DOM Elements
 const modalbg = document.querySelector(".bground");
@@ -18,6 +21,9 @@ const formulaire = document.querySelector(".formulaire");
 const landingModal = document.querySelector(".landingModal");
 const errorMessage = document.querySelectorAll(".errorMessage");
 const inputs = document.querySelectorAll("input.text-control");
+const sendForm = document.getElementById("sendForm");
+const closeLandingModal = document.getElementById("closeLandingModal");
+
 
 
 // Value input
@@ -28,6 +34,7 @@ const dateNaissance = document.querySelector("input[name='birthdate']");
 const tournois = document.querySelector("input[name='tournois']");
 const checkBoxCU = document.getElementById('checkbox1');
 const ratios = document.querySelectorAll("input[name='location']");
+const hamburgerMenu = document.getElementById("hamburgerMenu");
 
 
 
@@ -63,7 +70,6 @@ function closeModal () {
   formulaire.style.display="none";
   landingModal.style.display = "none";
 }
-closeBtn.addEventListener("click", closeModal);
 
 function closeForm() {
   modalbg.style.display = "block";
@@ -73,6 +79,14 @@ function closeForm() {
 
 // Event
 //-----------------------------------------//
+closeLandingModal.addEventListener("click", closeModal)
+closeBtn.addEventListener("click", closeModal())
+hamburgerMenu.addEventListener("click", editNav())
+
+
+sendForm.addEventListener("click", () => {
+  submitForm();
+})
 
 prenom.addEventListener("input", () => {
   validerPrenom(prenom.value);
